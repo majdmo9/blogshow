@@ -5,7 +5,7 @@ import { getPaginationPosts } from "./getPaginationPosts";
 import { getPost } from "./getPost";
 
 export const postsAPI = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: process.env.BASE_URL,
   CRUD: {
     getPaginationPosts,
     createPost,

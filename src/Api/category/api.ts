@@ -1,9 +1,8 @@
-import { CategoryProps } from "@blogshow/types/category";
 import { getCategories } from "./getCategories";
 import { createCategory } from "./createCategory";
 
 export const categoryAPI = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: process.env.BASE_URL,
   CRUD: {
     getCategories,
     createCategory,
