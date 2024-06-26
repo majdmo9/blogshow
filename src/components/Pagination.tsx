@@ -1,5 +1,5 @@
 "use client";
-import { usePosts } from "@/hooks/usePosts";
+import { usePosts } from "@blogshow/hooks/usePosts";
 
 const Pagination = ({
   hasMore,

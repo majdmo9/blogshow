@@ -1,7 +1,7 @@
 "use client";
-import { categoryAPI } from "@/Api/category/api";
-import { CategoryResponseProps } from "@/types/category";
-import { hexToRgba } from "@/utils/colors/hexToRgba";
+import { categoryAPI } from "@blogshow/Api/category/api";
+import { CategoryResponseProps } from "@blogshow/types/category";
+import { hexToRgba } from "@blogshow/utils/colors/hexToRgba";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

@@ -1,5 +1,5 @@
-import docClient from "@/db/dynamo";
-import { CommentProps } from "@/types/comment";
+import docClient from "@blogshow/db/dynamo";
+import { CommentProps } from "@blogshow/types/comment";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { uuid } from "uuidv4";

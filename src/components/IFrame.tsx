@@ -1,4 +1,4 @@
-import { getYoutubeEmbedIframe } from "@/utils/URL/getYoutubeIframe";
+import { getYoutubeEmbedIframe } from "@blogshow/utils/URL/getYoutubeIframe";
 import React from "react";
 
 interface Props {

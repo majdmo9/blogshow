@@ -1,6 +1,6 @@
 "use client";
-import { useCategories } from "@/hooks/useCategories";
-import { usePosts } from "@/hooks/usePosts";
+import { useCategories } from "@blogshow/hooks/useCategories";
+import { usePosts } from "@blogshow/hooks/usePosts";
 import Image from "next/image";
 import Link from "next/link";
 

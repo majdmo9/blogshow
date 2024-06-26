@@ -6,9 +6,9 @@ import { Divider } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleSignUp } from "@/lib/cognitoActions";
+import { handleSignUp } from "@blogshow/lib/cognitoActions";
 import { useRouter } from "next/navigation";
-import { objectToFormData } from "@/utils/convertObjToFormData";
+import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm<InputProps>();

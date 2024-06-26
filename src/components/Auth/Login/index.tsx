@@ -4,8 +4,8 @@ import { Divider } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleSignIn, loginWithGoogle } from "@/lib/cognitoActions";
-import { objectToFormData } from "@/utils/convertObjToFormData";
+import { handleSignIn, loginWithGoogle } from "@blogshow/lib/cognitoActions";
+import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -51,10 +51,12 @@ const Login = () => {
         <Divider className="dark:before:border-t-[#a6a6a6] dark:after:border-t-[#a6a6a6] before:border-t-[#626262] after:border-t-[#626262] text-[#626262] dark:text-[#a6a6a6]">
           OR
         </Divider>
-        <button className="socialButton bg-[#ff5555]" onClick={loginWithGoogle}>
+
+        <button className="socialButton bg-[#ff5555] w-full" type="submit" onClick={loginWithGoogle}>
           <GoogleIcon /> Sign in with Google
         </button>
-        <p>
+
+        <p className="text-center">
           {"Didn't"} have an account yet?{" "}
           <Link href="/signup" className="text-blue-500">
             Sign up

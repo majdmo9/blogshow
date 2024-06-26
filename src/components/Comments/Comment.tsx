@@ -1,12 +1,12 @@
 "use client";
-import { CommentEditProps, CommentResponseProps } from "@/types/comment";
+import { CommentEditProps, CommentResponseProps } from "@blogshow/types/comment";
 import User from "../User";
-import useAuthUser from "@/hooks/useUser";
+import useAuthUser from "@blogshow/hooks/useUser";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import EditDeleteControls from "../lib/EditDeleteControls";
 import { toast } from "react-toastify";
-import { commentAPI } from "@/Api/comment/api";
+import { commentAPI } from "@blogshow/Api/comment/api";
 
 const Comment = ({
   commentData: { content, createdAt, author, authorImage, id },

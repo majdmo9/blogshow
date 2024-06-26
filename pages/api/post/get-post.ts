@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GetCommand, GetCommandInput } from "@aws-sdk/lib-dynamodb";
-import dynamoDB from "@/db/dynamo";
+import dynamoDB from "@blogshow/db/dynamo";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "GET") {

@@ -1,6 +1,6 @@
 "use client";
-import { PostPropsResponse } from "@/types/post";
-import { LocalStorageVariables } from "@/utils/constants";
+import { PostPropsResponse } from "@blogshow/types/post";
+import { LocalStorageVariables } from "@blogshow/utils/constants";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";

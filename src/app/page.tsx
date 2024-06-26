@@ -1,9 +1,9 @@
-import CardList from "@/components/CardList";
-import CategoryList from "@/components/CategoryList";
-import Featured from "@/components/Featured";
-import Menu from "@/components/Menu";
+import CardList from "@blogshow/components/CardList";
+import CategoryList from "@blogshow/components/CategoryList";
+import Featured from "@blogshow/components/Featured";
+import Menu from "@blogshow/components/Menu";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Featured />
@@ -14,4 +14,5 @@ export default function Home() {
       </section>
     </>
   );
-}
+};
+export default Home;

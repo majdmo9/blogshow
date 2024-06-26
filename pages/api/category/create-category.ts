@@ -1,5 +1,5 @@
-import docClient from "@/db/dynamo";
-import { CategoryProps } from "@/types/category";
+import docClient from "@blogshow/db/dynamo";
+import { CategoryProps } from "@blogshow/types/category";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 

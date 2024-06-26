@@ -1,21 +1,22 @@
 "use client";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.bubble.css";
 import { useState } from "react";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import AddPhotoAlternateRoundedIcon from "@mui/icons-material/AddPhotoAlternateRounded";
 import VideoCameraBackRoundedIcon from "@mui/icons-material/VideoCameraBackRounded";
 import { Collapse } from "@mui/material";
-import useAuthUser from "@/hooks/useUser";
+import useAuthUser from "@blogshow/hooks/useUser";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { postsAPI } from "@/Api/posts/api";
-import Dialog from "@/components/Dialog";
+import { postsAPI } from "@blogshow/Api/posts/api";
+import Dialog from "@blogshow/components/Dialog";
 import Image from "next/image";
-import { getYoutubeEmbedIframe } from "@/utils/URL/getYoutubeIframe";
-import SelectComponent from "@/components/lib/Select";
-import { CategoryResponseProps } from "@/types/category";
-import IFrame from "@/components/IFrame";
+import SelectComponent from "@blogshow/components/lib/Select";
+import { CategoryResponseProps } from "@blogshow/types/category";
+import IFrame from "@blogshow/components/IFrame";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const WritePage = () => {
   const user = useAuthUser();

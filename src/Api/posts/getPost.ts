@@ -1,7 +1,7 @@
-import Axios from "@/lib/axiosConfig";
+import Axios from "@blogshow/lib/axiosConfig";
 import { postsAPI } from "./api";
-import { convertKeysToCamelCase } from "@/utils/camelize";
-import { PostPropsResponse } from "@/types/post";
+import { convertKeysToCamelCase } from "@blogshow/utils/camelize";
+import { PostPropsResponse } from "@blogshow/types/post";
 
 export const getPost = async (id: string): Promise<PostPropsResponse> => {
   const res = await Axios.get(postsAPI.getPost(id));

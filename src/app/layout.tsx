@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import Navbar from "@blogshow/components/Navbar";
 import "./globals.css";
-import { ThemeContextProvider } from "@/context/ThemeContext";
-import Footer from "@/components/Footer";
-import ConfigureAmplifyClientSide from "@/app/amplify-cognito-config";
+import { ThemeContextProvider } from "@blogshow/context/ThemeContext";
+import Footer from "@blogshow/components/Footer";
+import ConfigureAmplifyClientSide from "@blogshow/app/amplify-cognito-config";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BackdropContextProvider } from "@/context/BackdropContext";
+import { BackdropContextProvider } from "@blogshow/context/BackdropContext";
 
 const inter = Inter({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 

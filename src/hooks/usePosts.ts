@@ -1,6 +1,6 @@
-import { postsAPI } from "@/Api/posts/api";
-import { PostPropsResponse } from "@/types/post";
-import { LocalStorageVariables } from "@/utils/constants";
+import { postsAPI } from "@blogshow/Api/posts/api";
+import { PostPropsResponse } from "@blogshow/types/post";
+import { LocalStorageVariables } from "@blogshow/utils/constants";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 

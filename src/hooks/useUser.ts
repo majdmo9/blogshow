@@ -1,5 +1,5 @@
 "use client";
-import { getErrorMessage } from "@/utils/getErrorMessage";
+import { getErrorMessage } from "@blogshow/utils/getErrorMessage";
 import { fetchAuthSession, fetchUserAttributes, getCurrentUser } from "aws-amplify/auth";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";

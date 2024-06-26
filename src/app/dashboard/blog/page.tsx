@@ -1,6 +1,6 @@
 "use client";
-import CardList from "@/components/CardList";
-import Menu from "@/components/Menu";
+import CardList from "@blogshow/components/CardList";
+import Menu from "@blogshow/components/Menu";
 import { useSearchParams } from "next/navigation";
 
 const BlogPage = () => {

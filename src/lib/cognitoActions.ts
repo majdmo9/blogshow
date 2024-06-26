@@ -1,11 +1,10 @@
 "use client";
-
 import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect } from "aws-amplify/auth";
-import { getErrorMessage } from "@/utils/getErrorMessage";
+import { getErrorMessage } from "@blogshow/utils/getErrorMessage";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export const loginWithGoogle = async () => {
-  await signInWithRedirect({ provider: "Google" });
+  signInWithRedirect({ provider: "Google" });
 };
 
 export async function handleSignUp(formData: FormData, router: AppRouterInstance) {

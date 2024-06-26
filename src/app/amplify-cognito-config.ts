@@ -1,5 +1,6 @@
-import awsmobile from "@/aws-exports";
+"use client";
 import { Amplify } from "aws-amplify";
+import awsmobile from "@blogshow/aws-exports";
 
 Amplify.configure(awsmobile, { ssr: true });
 

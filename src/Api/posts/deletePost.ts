@@ -1,4 +1,4 @@
-import Axios from "@/lib/axiosConfig";
+import Axios from "@blogshow/lib/axiosConfig";
 import { postsAPI } from "./api";
 
 export const deletePost = async (postId: string): Promise<{ message: string }> => {

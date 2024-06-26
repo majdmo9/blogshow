@@ -1,5 +1,5 @@
-import { categoryAPI } from "@/Api/category/api";
-import { CategoryResponseProps } from "@/types/category";
+import { categoryAPI } from "@blogshow/Api/category/api";
+import { CategoryResponseProps } from "@blogshow/types/category";
 import { useEffect, useState } from "react";
 
 export const useCategories = () => {

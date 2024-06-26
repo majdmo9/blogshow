@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { hexToRgba } from "@/utils/colors/hexToRgba";
-import { useCategories } from "@/hooks/useCategories";
+import { hexToRgba } from "@blogshow/utils/colors/hexToRgba";
+import { useCategories } from "@blogshow/hooks/useCategories";
 
 const CategoryList = () => {
   const { categories } = useCategories();

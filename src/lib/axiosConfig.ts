@@ -1,4 +1,4 @@
-import { convertKeysToCamelCase } from "@/utils/camelize";
+import { convertKeysToCamelCase } from "@blogshow/utils/camelize";
 import axios from "axios";
 import { fetchAuthSession, signOut } from "aws-amplify/auth";
 

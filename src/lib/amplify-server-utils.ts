@@ -1,8 +1,10 @@
 import { NextServer, createServerRunner } from "@aws-amplify/adapter-nextjs";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth/server";
-import config from "../aws-exports";
+import awsmobile from "@blogshow/aws-exports";
 
-export const { runWithAmplifyServerContext } = createServerRunner({ config: config });
+export const { runWithAmplifyServerContext } = createServerRunner({
+  config: awsmobile,
+});
 
 export async function authenticatedUser(context: NextServer.Context) {
   return await runWithAmplifyServerContext({
@@ -13,11 +15,7 @@ export async function authenticatedUser(context: NextServer.Context) {
         if (!session.tokens) {
           return;
         }
-        const user = {
-          ...(await getCurrentUser(contextSpec)),
-          isAdmin: false,
-          picture: "",
-        };
+        const user = await getCurrentUser(contextSpec);
 
         return user;
       } catch (error) {

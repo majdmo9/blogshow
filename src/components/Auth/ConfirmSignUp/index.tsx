@@ -2,8 +2,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleConfirmSignUp, handleSendEmailVerificationCode } from "@/lib/cognitoActions";
-import { objectToFormData } from "@/utils/convertObjToFormData";
+import { handleConfirmSignUp, handleSendEmailVerificationCode } from "@blogshow/lib/cognitoActions";
+import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 
 const ConfirmSignUp = () => {
   const router = useRouter();

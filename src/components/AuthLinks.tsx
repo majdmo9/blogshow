@@ -4,14 +4,16 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Link from "next/link";
 import { Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import { handleSignOut } from "@/lib/cognitoActions";
+import { handleSignOut } from "@blogshow/lib/cognitoActions";
 import { useRouter } from "next/navigation";
-import useAuthUser from "@/hooks/useUser";
+import useAuthUser from "@blogshow/hooks/useUser";
 import Image from "next/image";
+import { UserIcon } from "@heroicons/react/24/outline";
 
 const AuthLinks = () => {
   const user = useAuthUser();
   const status = user ? "authed" : "notauthed";
+  console.log({ user });
 
   const theme = useTheme();
   const router = useRouter();
@@ -26,9 +28,13 @@ const AuthLinks = () => {
       <Link href="/dashboard/write">Write</Link>
       <Tooltip title="Logout">
         <button className="pointer" onClick={() => handleSignOut(router)}>
-          <figure>
-            <Image loader={() => user?.picture} src={user?.picture} width={50} height={50} alt="user-profile-img" className="rounded-[50%]" />
-          </figure>
+          {!user?.picture ? (
+            <UserIcon className="dark:text-gray-700 text-white rounded-[50%] p-2 bg-gray-700 dark:bg-[#f0f0f0] h-12 w-12" />
+          ) : (
+            <figure>
+              <Image loader={() => user?.picture} src={user?.picture} width={50} height={50} alt="user-profile-img" className="rounded-[50%]" />
+            </figure>
+          )}
         </button>
       </Tooltip>
     </>

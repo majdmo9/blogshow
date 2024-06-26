@@ -1,7 +1,7 @@
-import { CategoryProps } from "@/types/category";
+import { CategoryProps } from "@blogshow/types/category";
 import { categoryAPI } from "./api";
-import { getRandomLightColor } from "@/utils/colors/getRandomColor";
-import Axios from "@/lib/axiosConfig";
+import { getRandomLightColor } from "@blogshow/utils/colors/getRandomColor";
+import Axios from "@blogshow/lib/axiosConfig";
 
 export const createCategory = async ({ id, image }: CategoryProps): Promise<{ message: string }> => {
   const color = getRandomLightColor();

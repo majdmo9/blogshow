@@ -1,7 +1,7 @@
 "use client";
 import ModeNightRoundedIcon from "@mui/icons-material/ModeNightRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useThemeContext } from "@blogshow/context/ThemeContext";
 const ThemeToggle = () => {
   const { toggleTheme } = useThemeContext();
 

@@ -1,4 +1,4 @@
-import Loader from "@/components/Loader";
+import Loader from "@blogshow/components/Loader";
 import { CircularProgress } from "@mui/material";
 
 const LoadingPage = () => {

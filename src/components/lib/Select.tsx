@@ -1,8 +1,8 @@
 "use client";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import { categoryAPI } from "@/Api/category/api";
-import { CategoryResponseProps } from "@/types/category";
+import { categoryAPI } from "@blogshow/Api/category/api";
+import { CategoryResponseProps } from "@blogshow/types/category";
 import DialogComponent from "../Dialog";
 import { toast } from "react-toastify";
 

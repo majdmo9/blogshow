@@ -2,7 +2,7 @@
 import Card from "./Card";
 import Pagination from "./Pagination";
 import Loader from "./Loader";
-import { usePosts } from "@/hooks/usePosts";
+import { usePosts } from "@blogshow/hooks/usePosts";
 
 const limit = 2;
 const CardList = () => {

@@ -1,7 +1,7 @@
-import { PostPropsResponse } from "@/types/post";
+import { PostPropsResponse } from "@blogshow/types/post";
 import { postsAPI } from "./api";
-import { convertKeysToCamelCase } from "@/utils/camelize";
-import Axios from "@/lib/axiosConfig";
+import { convertKeysToCamelCase } from "@blogshow/utils/camelize";
+import Axios from "@blogshow/lib/axiosConfig";
 
 export const getPaginationPosts = async (
   limit: number,

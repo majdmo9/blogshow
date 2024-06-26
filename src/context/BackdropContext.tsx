@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/Loader";
+import Loader from "@blogshow/components/Loader";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { createContext, useContext, useState } from "react";
 

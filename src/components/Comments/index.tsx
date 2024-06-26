@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import Comment from "./Comment";
-import useAuthUser from "@/hooks/useUser";
+import useAuthUser from "@blogshow/hooks/useUser";
 import { useEffect, useState } from "react";
-import { CommentResponseProps } from "@/types/comment";
-import { commentAPI } from "@/Api/comment/api";
+import { CommentResponseProps } from "@blogshow/types/comment";
+import { commentAPI } from "@blogshow/Api/comment/api";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Loader from "../Loader";

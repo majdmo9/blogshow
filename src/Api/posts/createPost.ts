@@ -1,4 +1,4 @@
-import { PostProps } from "@/types/post";
+import { PostProps } from "@blogshow/types/post";
 import { postsAPI } from "./api";
 import axios from "axios";
 

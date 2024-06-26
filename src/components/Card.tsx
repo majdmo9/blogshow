@@ -1,4 +1,4 @@
-import { PostPropsResponse } from "@/types/post";
+import { PostPropsResponse } from "@blogshow/types/post";
 import Image from "next/image";
 import Link from "next/link";
 

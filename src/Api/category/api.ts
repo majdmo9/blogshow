@@ -1,4 +1,4 @@
-import { CategoryProps } from "@/types/category";
+import { CategoryProps } from "@blogshow/types/category";
 import { getCategories } from "./getCategories";
 import { createCategory } from "./createCategory";
 

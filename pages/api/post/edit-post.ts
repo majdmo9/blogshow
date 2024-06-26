@@ -1,5 +1,5 @@
-import docClient from "@/db/dynamo";
-import { PostEditProps } from "@/types/post";
+import docClient from "@blogshow/db/dynamo";
+import { PostEditProps } from "@blogshow/types/post";
 import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 

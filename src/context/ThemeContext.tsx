@@ -1,5 +1,5 @@
 "use client";
-import { LocalStorageVariables } from "@/utils/constants";
+import { LocalStorageVariables } from "@blogshow/utils/constants";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type ModeType = "light" | "dark";

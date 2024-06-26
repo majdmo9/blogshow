@@ -1,4 +1,4 @@
-import ConfirmSignUp from "@/components/Auth/ConfirmSignUp";
+import ConfirmSignUp from "@blogshow/components/Auth/ConfirmSignUp";
 
 const ConfirmSignUpPage = () => <ConfirmSignUp />;
 

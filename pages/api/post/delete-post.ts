@@ -1,4 +1,4 @@
-import docClient from "@/db/dynamo";
+import docClient from "@blogshow/db/dynamo";
 import { DeleteCommand, DeleteCommandInput } from "@aws-sdk/lib-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
