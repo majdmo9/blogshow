@@ -5,7 +5,7 @@ import { getPaginationPosts } from "./getPaginationPosts";
 import { getPost } from "./getPost";
 
 export const postsAPI = {
-  baseUrl: String(process.env.BASE_URL),
+  baseUrl: "https://main.d3p9fe2sn9xfhh.amplifyapp.com",
   CRUD: {
     getPaginationPosts,
     createPost,

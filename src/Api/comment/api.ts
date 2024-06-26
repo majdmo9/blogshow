@@ -4,7 +4,7 @@ import { editComment } from "./editComment";
 import { getPostComments } from "./getPostComments";
 
 export const commentAPI = {
-  baseUrl: String(process.env.BASE_URL),
+  baseUrl: "https://main.d3p9fe2sn9xfhh.amplifyapp.com",
   CRUD: {
     createComment,
     getPostComments,

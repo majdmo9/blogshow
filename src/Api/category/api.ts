@@ -2,7 +2,7 @@ import { getCategories } from "./getCategories";
 import { createCategory } from "./createCategory";
 
 export const categoryAPI = {
-  baseUrl: String(process.env.BASE_URL),
+  baseUrl: "https://main.d3p9fe2sn9xfhh.amplifyapp.com",
   CRUD: {
     getCategories,
     createCategory,
