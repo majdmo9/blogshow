@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
 import { handleConfirmSignUp, handleSendEmailVerificationCode } from "@blogshow/lib/cognitoActions";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
+import { toast } from "react-toastify";
 
 const ConfirmSignUp = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const ConfirmSignUp = () => {
           <button
             onClick={async () => {
               const res = await handleSendEmailVerificationCode(objectToFormData({ email }));
-              console.log({ res });
+              toast.success(res);
             }}
             className="text-blue-500"
           >

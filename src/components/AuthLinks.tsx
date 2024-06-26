@@ -13,7 +13,6 @@ import { UserIcon } from "@heroicons/react/24/outline";
 const AuthLinks = () => {
   const user = useAuthUser();
   const status = user ? "authed" : "notauthed";
-  console.log({ user });
 
   const theme = useTheme();
   const router = useRouter();
