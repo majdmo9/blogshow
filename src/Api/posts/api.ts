@@ -5,7 +5,7 @@ import { getPaginationPosts } from "./getPaginationPosts";
 import { getPost } from "./getPost";
 
 export const postsAPI = {
-  baseUrl: process.env.BASE_URL,
+  baseUrl: String(process.env.BASE_URL),
   CRUD: {
     getPaginationPosts,
     createPost,

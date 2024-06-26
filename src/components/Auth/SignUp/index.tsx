@@ -1,14 +1,13 @@
 "use client";
 import GoogleIcon from "@mui/icons-material/Google";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import { Divider } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleSignUp } from "@blogshow/lib/cognitoActions";
+import { handleSignUp, loginWithGoogle } from "@blogshow/lib/cognitoActions";
 import { useRouter } from "next/navigation";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
+import { toast } from "react-toastify";
 const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm<InputProps>();
@@ -16,8 +15,7 @@ const SignUp = () => {
   const onRegister = async (values: InputProps) => {
     const data = objectToFormData(values);
     const res = await handleSignUp(data, router);
-    console.log({ res });
-
+    toast.success(res);
     reset();
   };
 
@@ -62,14 +60,8 @@ const SignUp = () => {
         <Divider className="dark:before:border-t-[#a6a6a6] dark:after:border-t-[#a6a6a6] before:border-t-[#626262] after:border-t-[#626262] text-[#626262] dark:text-[#a6a6a6]">
           OR
         </Divider>
-        <button className="socialButton bg-[#ff5555]">
+        <button className="socialButton bg-[#ff5555]" onClick={loginWithGoogle}>
           <GoogleIcon /> Sign up with Google
-        </button>
-        <button className="socialButton bg-[#111]">
-          <GitHubIcon /> Sign up with Github
-        </button>
-        <button className="socialButton bg-[#087bea]">
-          <FacebookIcon /> Sign up with Facebook
         </button>
         <p className="m-auto">
           Already rigestered?{" "}

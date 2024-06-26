@@ -9,7 +9,7 @@ export const loginWithGoogle = async () => {
 
 export async function handleSignUp(formData: FormData, router: AppRouterInstance) {
   try {
-    await signUp({
+    const res = await signUp({
       username: String(formData.get("email")),
       password: String(formData.get("password")),
       options: {
@@ -20,6 +20,9 @@ export async function handleSignUp(formData: FormData, router: AppRouterInstance
         autoSignIn: true,
       },
     });
+    if (res.isSignUpComplete) {
+      return "Sign up successful";
+    }
   } catch (error) {
     return getErrorMessage(error);
   }

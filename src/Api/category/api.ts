@@ -2,7 +2,7 @@ import { getCategories } from "./getCategories";
 import { createCategory } from "./createCategory";
 
 export const categoryAPI = {
-  baseUrl: process.env.BASE_URL,
+  baseUrl: String(process.env.BASE_URL),
   CRUD: {
     getCategories,
     createCategory,
