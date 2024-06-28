@@ -15,9 +15,13 @@ const ConfirmSignUp = () => {
 
   const onSubmit = async (values: InputProps) => {
     const data = objectToFormData({ email, code: values.confirmCode });
-    const res = await handleConfirmSignUp(data, router);
-    console.log({ res });
-
+    const res = await handleConfirmSignUp(data);
+    if (res.includes("successfuly")) {
+      toast.success(res);
+      router.push("/dashboard");
+    } else {
+      toast.error(res);
+    }
     reset();
   };
 

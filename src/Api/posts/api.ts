@@ -5,14 +5,8 @@ import { getPaginationPosts } from "./getPaginationPosts";
 import { getPost } from "./getPost";
 
 export const postsAPI = {
-  baseUrl: "https://main.d3p9fe2sn9xfhh.amplifyapp.com",
-  CRUD: {
-    getPaginationPosts,
-    createPost,
-    getPost,
-    editPost,
-    deletePost,
-  },
+  baseUrl: "http://localhost:3000",
+  CRUD: { getPaginationPosts, createPost, getPost, editPost, deletePost },
   getPaginationPosts: function (limit: number, nextKey: string | null) {
     let url = `${this.baseUrl}/api/post/get-posts?limit=${limit}`;
     if (nextKey) {

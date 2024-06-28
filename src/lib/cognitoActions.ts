@@ -1,7 +1,7 @@
 "use client";
-import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect } from "aws-amplify/auth";
 import { getErrorMessage } from "@blogshow/utils/getErrorMessage";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect } from "aws-amplify/auth";
 
 export const loginWithGoogle = async () => {
   signInWithRedirect({ provider: "Google" });
@@ -43,16 +43,16 @@ export async function handleSendEmailVerificationCode(formData: FormData) {
   return message;
 }
 
-export async function handleConfirmSignUp(formData: FormData, router: AppRouterInstance) {
+export async function handleConfirmSignUp(formData: FormData) {
   try {
     await confirmSignUp({
       username: String(formData.get("email")),
       confirmationCode: String(formData.get("code")),
     });
+    return "Registered successfuly, Now you can Signin..";
   } catch (error) {
     return getErrorMessage(error);
   }
-  router.push("/login");
 }
 
 export async function handleSignIn(formData: FormData, router: AppRouterInstance) {
