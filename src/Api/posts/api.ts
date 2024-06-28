@@ -5,7 +5,7 @@ import { getPaginationPosts } from "./getPaginationPosts";
 import { getPost } from "./getPost";
 
 export const postsAPI = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: String(process.env.NEXT_PUBLIC_API_BASE_URL),
   CRUD: { getPaginationPosts, createPost, getPost, editPost, deletePost },
   getPaginationPosts: function (limit: number, nextKey: string | null) {
     let url = `${this.baseUrl}/api/post/get-posts?limit=${limit}`;

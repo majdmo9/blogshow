@@ -4,7 +4,7 @@ import { editComment } from "./editComment";
 import { getPostComments } from "./getPostComments";
 
 export const commentAPI = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: String(process.env.NEXT_PUBLIC_API_BASE_URL),
   CRUD: {
     createComment,
     getPostComments,

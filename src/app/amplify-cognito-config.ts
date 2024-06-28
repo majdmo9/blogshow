@@ -9,8 +9,8 @@ export const authConfig: ResourcesConfig["Auth"] = {
       oauth: {
         domain: "blogshow.auth.us-east-1.amazoncognito.com",
         scopes: ["openid", "email", "profile"],
-        redirectSignIn: ["http://localhost:3000/"],
-        redirectSignOut: ["http://localhost:3000/"],
+        redirectSignIn: ["http://localhost:3000/", "https://blogshow.vercel.app/"],
+        redirectSignOut: ["http://localhost:3000/", "https://blogshow.vercel.app/"],
         responseType: "code",
         providers: ["Google"],
       },

@@ -2,7 +2,7 @@ import { getCategories } from "./getCategories";
 import { createCategory } from "./createCategory";
 
 export const categoryAPI = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: String(process.env.NEXT_PUBLIC_API_BASE_URL),
   CRUD: {
     getCategories,
     createCategory,
