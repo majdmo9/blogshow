@@ -65,11 +65,11 @@ const Comments = () => {
             value={commentToCreate}
             onChange={e => setCommentToCreate(e.target.value)}
             placeholder="Write a comment..."
-            className="p-[20px] w-full"
+            className="p-[20px] w-full text-black"
           />
           <button onClick={createComment} className="py-[16px] px-[20px] text-white bg-orange-600 rounded-md flex items-center justify-between gap-2">
             Send
-            {loading ? <Loader /> : <></>}
+            {loading ? <Loader isSmall /> : <></>}
           </button>
         </div>
       ) : (

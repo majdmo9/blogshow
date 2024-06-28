@@ -68,7 +68,7 @@ const Comment = ({
       </div>
       <div className="flex justify-between items-center w-full gap-4">
         {editMode ? (
-          <input {...register("content")} placeholder="Comment.." className="w-full dark:bg-gray-600 rounded-sm text-white px-4" />
+          <input {...register("content")} placeholder="Comment.." className="w-full dark:bg-gray-600 rounded-sm dark:text-white px-4" />
         ) : (
           <p className="text-lg font-light">{content}</p>
         )}

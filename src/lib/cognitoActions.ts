@@ -5,7 +5,7 @@ import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRed
 
 export const loginWithGoogle = async () => {
   window.open(
-    `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${process.env.NEXT_PUBLIC_API_BASE_URL}&scope=profile email&response_type=code&client_id=${process.env.GOOGLE_OAUTH_CLIENT_ID}&prompt=select_account`,
+    `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${process.env.NEXT_PUBLIC_API_BASE_URL}&scope=profile email openid&response_type=code&client_id=${process.env.GOOGLE_OAUTH_CLIENT_ID}&prompt=select_account`,
     "_self"
   );
   signInWithRedirect({ provider: "Google" });
