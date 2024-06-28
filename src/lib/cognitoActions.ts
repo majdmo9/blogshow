@@ -4,6 +4,10 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect } from "aws-amplify/auth";
 
 export const loginWithGoogle = async () => {
+  window.open(
+    `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${process.env.NEXT_PUBLIC_API_BASE_URL}&scope=profile email&response_type=code&client_id=${process.env.GOOGLE_OAUTH_CLIENT_ID}&prompt=select_account`,
+    "_self"
+  );
   signInWithRedirect({ provider: "Google" });
 };
 
