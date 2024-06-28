@@ -14,12 +14,12 @@ const Featured = () => {
 
   useEffect(() => {
     setLoading(true);
-    if (typeof window !== "undefined") {
+    window.addEventListener("storage", () => {
       const res = localStorage.getItem(LocalStorageVariables.LatestPost);
       if (res) {
         setPost(JSON.parse(res));
       }
-    }
+    });
     setLoading(false);
   }, []);
 

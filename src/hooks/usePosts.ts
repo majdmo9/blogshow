@@ -2,7 +2,7 @@ import { postsAPI } from "@blogshow/Api/posts/api";
 import { PostPropsResponse } from "@blogshow/types/post";
 import { LocalStorageVariables } from "@blogshow/utils/constants";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface HistoryEntry {
   posts: PostPropsResponse[];
@@ -20,45 +20,49 @@ export const usePosts = (limit: number) => {
   const searchParams = useSearchParams();
   const cat = searchParams?.get("cat");
 
-  const fetchPosts = async (limit: number, nextKey?: string) => {
-    try {
-      setLoading(true);
-      if (history.length > currentIndex + 1) {
-        if (cat) {
-          setPosts(history[currentIndex + 1].posts.filter(el => el.category === cat));
-        } else setPosts(history[currentIndex + 1].posts);
-      } else {
-        const response = await postsAPI.CRUD.getPaginationPosts(limit, nextKey);
-        if (!response) {
-          throw new Error("Failed to fetch posts");
-        }
-        if (cat) {
-          setPosts(response.data.filter(el => el.category === cat));
+  const fetchPosts = useCallback(
+    async (limit: number, nextKey?: string) => {
+      try {
+        setLoading(true);
+        if (history.length > currentIndex + 1) {
+          if (cat) {
+            setPosts(history[currentIndex + 1].posts.filter(el => el.category === cat));
+          } else setPosts(history[currentIndex + 1].posts);
         } else {
-          setPosts(response.data);
+          const response = await postsAPI.CRUD.getPaginationPosts(limit, nextKey);
+          if (!response) {
+            throw new Error("Failed to fetch posts");
+          }
+          if (cat) {
+            setPosts(response.data.filter(el => el.category === cat));
+          } else {
+            setPosts(response.data);
+          }
+          const newHistory = { posts: response.data, nextKey: response.nextKey, prevKey: nextKey || null };
+          setHistory(prevHistory => [...prevHistory.slice(0, currentIndex + 1), newHistory]);
         }
-        const newHistory = { posts: response.data, nextKey: response.nextKey, prevKey: nextKey || null };
-        setHistory(prevHistory => [...prevHistory.slice(0, currentIndex + 1), newHistory]);
-      }
 
-      setCurrentIndex(currentIndex + 1);
-      setLoading(false);
-    } catch (error: any) {
-      setError(error.message);
-      setLoading(false);
-    }
-  };
+        setCurrentIndex(currentIndex + 1);
+        setLoading(false);
+      } catch (error: any) {
+        setError(error.message);
+        setLoading(false);
+      }
+    },
+    [cat, currentIndex, setPosts, history]
+  );
 
   useEffect(() => {
     if (posts.length) {
       localStorage.setItem(LocalStorageVariables.LatestPost, JSON.stringify(posts[0]));
+      window.dispatchEvent(new Event("storage"));
     }
   }, [posts]);
 
   useEffect(() => {
     if (currentIndex >= 0 || cat) return;
     fetchPosts(limit);
-  }, [currentIndex, limit]);
+  }, [currentIndex, limit, fetchPosts, cat]);
 
   useEffect(() => {
     if (cat) fetchPosts(limit);

@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Link from "next/link";
 import { Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { handleSignOut } from "@blogshow/lib/cognitoActions";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useAuthUser from "@blogshow/hooks/useUser";
 import Image from "next/image";
 import { UserIcon } from "@heroicons/react/24/outline";
@@ -16,9 +16,15 @@ const AuthLinks = () => {
 
   const theme = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
+
   const [open, setOpen] = useState(false);
   const toggleMenu = () => setOpen(prev => !prev);
   const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const Login = <Link href="/login">Login</Link>;
 
@@ -40,7 +46,7 @@ const AuthLinks = () => {
   );
 
   const Menu = (
-    <div className="absolute top-[100px] left-0 dark:bg-[#0f172a] min-h-[calc(100vh-100px)] w-full flex flex-col items-center justify-center gap-10 text-4xl z-50">
+    <div className="absolute top-[100px] left-0 bg-white dark:bg-[#0f172a] min-h-[calc(100vh-100px)] w-full flex flex-col items-center justify-center gap-10 text-4xl z-50">
       <Link href="/dashboard">Homepage</Link>
       <Link href="/dashboard/about">About</Link>
       <Link href="/dashboard/contact">Contact</Link>
