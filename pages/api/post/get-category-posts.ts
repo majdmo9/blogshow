@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ScanCommand, ScanCommandInput } from "@aws-sdk/lib-dynamodb";
+import { QueryCommand, QueryCommandInput } from "@aws-sdk/lib-dynamodb";
 import dynamoDB from "@blogshow/db/dynamo";
 import { kvAPI } from "@blogshow/Api/kv/api";
 import { MaxReadLimit } from "@blogshow/utils/constants";
@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { limit, nextKey, userId } = req.query as { limit: string; nextKey?: string; userId: string };
+  const { limit, nextKey, userId, category } = req.query as { limit: string; nextKey?: string; userId: string; category: string };
   const limitInt = Number(limit);
 
   const userStatus = await kvAPI.CRUD.getUser(userId);
@@ -23,8 +23,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ message: "Limit must be between 1 and 10" });
   }
 
-  const params: ScanCommandInput = {
+  const params: QueryCommandInput = {
     TableName: "post",
+    IndexName: "category-index",
+    KeyConditionExpression: "category = :category",
+    ExpressionAttributeValues: { ":category": category },
     Limit: limitInt,
   };
 
@@ -33,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const data = await dynamoDB.send(new ScanCommand(params));
+    const data = await dynamoDB.send(new QueryCommand(params));
     const nextKey = data.LastEvaluatedKey ? JSON.stringify(data.LastEvaluatedKey) : null;
 
     res.status(200).json({ data: data.Items, nextKey });

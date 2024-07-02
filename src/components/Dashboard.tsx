@@ -2,15 +2,20 @@ import Featured from "./Featured";
 import CategoryList from "./CategoryList";
 import CardList from "./CardList";
 import Menu from "./Menu";
+import { CategoryResponseProps } from "@blogshow/types/category";
 
-const Dashboard = () => {
+interface Props {
+  categories: CategoryResponseProps[];
+}
+
+const Dashboard = ({ categories }: Props) => {
   return (
     <main>
       <Featured />
-      <CategoryList />
+      <CategoryList categories={categories} />
       <section className="flex gap-[50px]">
         <CardList />
-        <Menu />
+        <Menu categories={categories} />
       </section>
     </main>
   );

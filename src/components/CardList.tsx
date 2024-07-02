@@ -2,11 +2,10 @@
 import Card from "./Card";
 import Pagination from "./Pagination";
 import Loader from "./Loader";
-import { usePosts } from "@blogshow/hooks/usePosts";
+import { usePosts } from "@blogshow/context/PostsContext";
 
-const limit = 2;
 const CardList = () => {
-  const { posts, loading, hasMore, hasPrevious, fetchMore, fetchPrevious } = usePosts(limit);
+  const { posts, loading, hasMore, hasPrevious, fetchMore, fetchPrevious, error } = usePosts();
 
   return (
     <div className="flex-[5]">
@@ -16,6 +15,10 @@ const CardList = () => {
           <Loader />
         ) : posts.length ? (
           posts.map(post => <Card key={post.id} compKey={post.id} post={post} />)
+        ) : error === "Sign in or sign up" ? (
+          <h2 className="text-center text-xl">{error}</h2>
+        ) : error === "You reached the fetch limit!" ? (
+          <h2 className="text-center text-xl">{error}</h2>
         ) : (
           <h2 className="text-center text-xl">No more posts to preview...</h2>
         )}

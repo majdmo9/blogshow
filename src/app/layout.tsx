@@ -8,6 +8,7 @@ import ConfigureAmplifyClientSide from "@blogshow/app/amplify-cognito-config";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BackdropContextProvider } from "@blogshow/context/BackdropContext";
+import { PostsContextProvider } from "@blogshow/context/PostsContext";
 
 const inter = Inter({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
@@ -30,7 +31,7 @@ export default function RootLayout({
           <BackdropContextProvider>
             <div className="wrapper">
               <Navbar />
-              {children}
+              <PostsContextProvider>{children}</PostsContextProvider>
               <Footer />
             </div>
           </BackdropContextProvider>

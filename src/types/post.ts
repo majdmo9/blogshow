@@ -21,3 +21,12 @@ export interface PostEditProps {
   imageUrl?: string;
   videoUrl?: string;
 }
+
+export interface CategoryPostProps {
+  title: string;
+  description: string;
+  createdAt: string;
+  category: string;
+  imageUrl: string;
+  id: string;
+}

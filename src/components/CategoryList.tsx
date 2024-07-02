@@ -1,11 +1,13 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { hexToRgba } from "@blogshow/utils/colors/hexToRgba";
-import { useCategories } from "@blogshow/hooks/useCategories";
+import { CategoryResponseProps } from "@blogshow/types/category";
 
-const CategoryList = () => {
-  const { categories } = useCategories();
+interface Props {
+  categories: CategoryResponseProps[];
+}
+
+const CategoryList = ({ categories }: Props) => {
   return (
     <div>
       <h1 className="my-10 font-semibold text-2xl">Popular Categories</h1>

@@ -1,9 +1,9 @@
-import { PostPropsResponse } from "@blogshow/types/post";
+import { CategoryPostProps } from "@blogshow/types/post";
 import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  post: PostPropsResponse;
+  post: CategoryPostProps;
   compKey: string;
 }
 

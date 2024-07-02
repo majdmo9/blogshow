@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import { useRouter } from "next/navigation";
+import useAuthUser from "@blogshow/hooks/useUser";
 
 const Featured = () => {
   const router = useRouter();
+  const user = useAuthUser();
 
   const [post, setPost] = useState<PostPropsResponse>();
   const [loading, setLoading] = useState(false);
@@ -23,8 +25,29 @@ const Featured = () => {
     setLoading(false);
   }, []);
 
-  if (loading || !post) {
+  if (loading && !post) {
     return <Loader />;
+  }
+
+  if (!user?.userId) {
+    return (
+      <div className="mt-[30px]">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-light">
+          <span className="font-bold">Welcome👋! </span>
+          Sign in or sign up to start blogging.
+        </h1>
+      </div>
+    );
+  }
+  if (!post) {
+    return (
+      <div className="mt-[30px]">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-light">
+          <span className="font-bold">I&apos;m really sorry for hiding the data.</span> My website is all about showing you how experienced I am. To
+          make it up to you, I&apos;ll renew your fetching credits early. Thanks for understanding!
+        </h1>
+      </div>
+    );
   }
 
   return (

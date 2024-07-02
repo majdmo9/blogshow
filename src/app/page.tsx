@@ -1,18 +1,27 @@
-import CardList from "@blogshow/components/CardList";
-import CategoryList from "@blogshow/components/CategoryList";
-import Featured from "@blogshow/components/Featured";
-import Menu from "@blogshow/components/Menu";
+"use client";
+import { useEffect } from "react";
+import isEmpty from "lodash/isEmpty";
+import { kvAPI } from "@blogshow/Api/kv/api";
+import useAuthUser from "@blogshow/hooks/useUser";
+import Dashboard from "@blogshow/components/Dashboard";
+import { useCategories } from "@blogshow/hooks/useCategories";
 
 const Home = () => {
-  return (
-    <>
-      <Featured />
-      <CategoryList />
-      <section className="flex gap-[50px]">
-        <CardList />
-        <Menu />
-      </section>
-    </>
-  );
+  const user = useAuthUser();
+  const { categories } = useCategories();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (user?.userId) {
+        const res = await kvAPI.CRUD.getUser(user.userId);
+        if (isEmpty(res)) {
+          await kvAPI.CRUD.createUser(user.userId);
+        }
+      }
+    };
+    fetchUser();
+  }, [user]);
+
+  return <Dashboard categories={categories} />;
 };
 export default Home;

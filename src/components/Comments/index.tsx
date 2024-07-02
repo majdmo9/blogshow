@@ -60,14 +60,17 @@ const Comments = () => {
     <div className="w-full flex flex-col">
       <h1 className="text-3xl font-bold text-[#626262] dark:text-[#a6a6a6] mb-[30px]">Comments</h1>
       {user?.email ? (
-        <div className="flex items-center justify-between gap-[30px]">
+        <div className="flex sm:flex-row flex-col items-center justify-between gap-3 sm:gap-[30px]">
           <textarea
             value={commentToCreate}
             onChange={e => setCommentToCreate(e.target.value)}
             placeholder="Write a comment..."
-            className="p-[20px] w-full text-black"
+            className="sm:p-[20px] p-2 w-full text-black rounded-sm"
           />
-          <button onClick={createComment} className="py-[16px] px-[20px] text-white bg-orange-600 rounded-md flex items-center justify-between gap-2">
+          <button
+            onClick={createComment}
+            className="py-[16px] px-[20px] w-full sm:w-fit text-white bg-orange-600 rounded-md flex items-center justify-center gap-2"
+          >
             Send
             {loading ? <Loader isSmall /> : <></>}
           </button>

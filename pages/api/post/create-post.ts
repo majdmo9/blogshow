@@ -3,6 +3,8 @@ import { PostProps } from "@blogshow/types/post";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { uuid } from "uuidv4";
+import { kvAPI } from "@blogshow/Api/kv/api";
+import { MaxWriteLimit } from "@blogshow/utils/constants";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -12,6 +14,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const id = uuid();
 
   const { title, description, createdAt, author, authorId, category, videoUrl, imageUrl, authorImage } = req.body as PostProps;
+
+  const userStatus = await kvAPI.CRUD.getUser(authorId);
+  if (userStatus === null || userStatus.create >= MaxWriteLimit) {
+    return res.status(403).end();
+  }
+  await kvAPI.CRUD.updateUser({ userId: authorId, read: userStatus.read, create: userStatus.create + 1 });
 
   const params = {
     TableName: "post",

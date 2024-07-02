@@ -1,6 +1,3 @@
-"use client";
-import { usePosts } from "@blogshow/hooks/usePosts";
-
 const Pagination = ({
   hasMore,
   hasPrevious,

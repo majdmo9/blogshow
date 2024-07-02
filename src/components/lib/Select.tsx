@@ -1,10 +1,12 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { categoryAPI } from "@blogshow/Api/category/api";
 import { CategoryResponseProps } from "@blogshow/types/category";
 import DialogComponent from "../Dialog";
 import { toast } from "react-toastify";
+import { useCategories } from "@blogshow/hooks/useCategories";
+import { MaxCategoriesLimit } from "@blogshow/utils/constants";
 
 interface Props {
   setSelectedCat: Dispatch<SetStateAction<CategoryResponseProps | undefined>>;
@@ -12,28 +14,14 @@ interface Props {
 
 const SelectComponent = ({ setSelectedCat }: Props) => {
   const [open, setOpen] = useState(false);
-  const [categories, setCategories] = useState<CategoryResponseProps[]>([]);
   const [categoryTitle, setCategoryTitle] = useState("");
   const [categoryImage, setCategoryImage] = useState("");
 
-  const fetchCategories = async () => {
-    try {
-      const res = await categoryAPI.CRUD.getCategories();
-      if (res.data) {
-        setCategories(res.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const { categories, fetchCategories } = useCategories();
 
   const handleCreateCategory = async () => {
     try {
-      if (categories.length >= 10) {
+      if (categories.length >= MaxCategoriesLimit) {
         toast.error("You have exceeded the limit for creating additional categories.");
       }
       if (!categoryTitle || !categoryImage) return;

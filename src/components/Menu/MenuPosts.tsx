@@ -1,16 +1,20 @@
 "use client";
-import { useCategories } from "@blogshow/hooks/useCategories";
-import { usePosts } from "@blogshow/hooks/usePosts";
 import Image from "next/image";
 import Link from "next/link";
+import { usePosts } from "@blogshow/context/PostsContext";
+import { CategoryResponseProps } from "@blogshow/types/category";
 
 interface Props {
   hasImage?: boolean;
+  categories: CategoryResponseProps[];
 }
 
-const MenuPosts = ({ hasImage = false }: Props) => {
-  const { posts } = usePosts(4);
-  const { categories } = useCategories();
+const MenuPosts = ({ hasImage = false, categories }: Props) => {
+  const { posts } = usePosts();
+
+  if (!categories) {
+    return <></>;
+  }
 
   return (
     <div className="flex flex-col gap-[35px] mt-[35px] mb-[60px]">

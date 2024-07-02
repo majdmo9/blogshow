@@ -34,7 +34,8 @@ const SlugPage = () => {
   } = useForm<Omit<PostEditProps, "postId" | "description">>();
 
   const fetchPost = async () => {
-    const res = await postsAPI.CRUD.getPost(id);
+    if (!user?.userId) return;
+    const res = await postsAPI.CRUD.getPost(id, user.userId);
     if (res) {
       setPost(res);
       setDescription(res.description);
@@ -82,7 +83,7 @@ const SlugPage = () => {
 
   useEffect(() => {
     fetchPost();
-  }, []);
+  }, [user]);
 
   if (!post) {
     return (

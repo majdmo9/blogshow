@@ -1,22 +1,13 @@
-"use client";
-import { categoryAPI } from "@blogshow/Api/category/api";
 import { CategoryResponseProps } from "@blogshow/types/category";
 import { hexToRgba } from "@blogshow/utils/colors/hexToRgba";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-const MenuCategoryList = () => {
-  const [categories, setCategories] = useState<CategoryResponseProps[]>([]);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await categoryAPI.CRUD.getCategories();
-      if (res.data) {
-        setCategories(res.data);
-      }
-    };
-    fetchCategories();
-  }, []);
+interface Props {
+  categories: CategoryResponseProps[];
+}
 
+const MenuCategoryList = ({ categories }: Props) => {
+  if (!categories) return <></>;
   return (
     <div className="mt-[35px] mb-[60px] gap-[20px] flex flex-wrap">
       {categories.map(cat => (

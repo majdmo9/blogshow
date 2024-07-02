@@ -21,6 +21,7 @@
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.16",
     "@types/aws-sdk": "^2.7.0",
+    "@vercel/kv": "^2.0.0",
     "aws-amplify": "^6.3.3",
     "axios": "^1.7.2",
     "lodash": "^4.17.21",
