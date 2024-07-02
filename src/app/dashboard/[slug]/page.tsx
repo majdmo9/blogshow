@@ -6,6 +6,7 @@ import Loader from "@blogshow/components/Loader";
 import Menu from "@blogshow/components/Menu";
 import User from "@blogshow/components/User";
 import EditDeleteControls from "@blogshow/components/lib/EditDeleteControls";
+import { useCategories } from "@blogshow/hooks/useCategories";
 import useAuthUser from "@blogshow/hooks/useUser";
 import { PostEditProps, PostPropsResponse } from "@blogshow/types/post";
 import Image from "next/image";
@@ -18,11 +19,12 @@ import { toast } from "react-toastify";
 
 const SlugPage = () => {
   const user = useAuthUser();
+  const { categories } = useCategories();
   const searchParams = useParams();
   const router = useRouter();
   const id = searchParams?.slug as string;
-  const [post, setPost] = useState<PostPropsResponse>();
 
+  const [post, setPost] = useState<PostPropsResponse>();
   const [editMode, setEditMode] = useState(false);
   const [description, setDescription] = useState(post?.description);
   const {
@@ -151,7 +153,7 @@ const SlugPage = () => {
             <Comments />
           </div>
         </div>
-        <Menu />
+        <Menu categories={categories} />
       </div>
     </div>
   );

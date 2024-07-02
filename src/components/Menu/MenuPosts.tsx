@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePosts } from "@blogshow/context/PostsContext";
 import { CategoryResponseProps } from "@blogshow/types/category";
+import { PostPropsResponse } from "@blogshow/types/post";
 
 interface Props {
   hasImage?: boolean;
@@ -42,7 +43,7 @@ const MenuPosts = ({ hasImage = false, categories }: Props) => {
             </span>
             <h3 className="text-lg font-medium text-[#626262] dark:text-[#a6a6a6]">{post.title.slice(0, 20)}</h3>
             <div className="text-xs">
-              <span>{post.author}</span>
+              <span>{(post as PostPropsResponse).author}</span>
               <span className="text-gray-400"> - {new Date(post.createdAt).toLocaleDateString()}</span>
             </div>
           </div>

@@ -15,7 +15,7 @@ const Footer = () => {
           amet consectetur adipisicing elit. Eligendi, optio!
         </p>
         <div className="mt-[10px]">
-          <SocialIcons />
+          <SocialIcons isEmail />
         </div>
       </div>
       <div className="flex-1 flex gap-[50px] lg:gap-[100px] text-[14px] justify-between w-full md:justify-end md:w-fit">
