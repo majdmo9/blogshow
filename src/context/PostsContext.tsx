@@ -66,20 +66,15 @@ export const PostsContextProvider = ({ children }: Props) => {
           setPosts(catHistory[currentIndex + 1].posts as CategoryPostProps[]);
         } else {
           let response;
-          if (cat) {
-            response = await postsAPI.CRUD.getCategoryPosts(limit, nextKey, user.userId, cat);
-          } else {
-            response = await postsAPI.CRUD.getPaginationPosts(limit, nextKey, user.userId);
-          }
+          if (cat) response = await postsAPI.CRUD.getCategoryPosts(limit, nextKey, user.userId, cat);
+          else response = await postsAPI.CRUD.getPaginationPosts(limit, nextKey, user.userId);
 
-          if (response === 403) {
-            throw new Error("You reached the fetch limit!");
-          }
-          if (!response) {
-            throw new Error("Failed to fetch posts");
-          } else {
-            setPosts((response as { data: PostPropsResponse[]; nextKey: string | null }).data);
-          }
+          if (response === 403) throw new Error("You reached the fetch limit!");
+          if (!response) throw new Error("Failed to fetch posts");
+
+          const resPosts = (response as { data: CategoryPostProps[]; nextKey: string | null }).data;
+          setPosts(resPosts);
+
           if (cat) {
             setNewCatHistory(response as { data: CategoryPostProps[]; nextKey: string | null }, nextKey);
           } else {
@@ -87,6 +82,7 @@ export const PostsContextProvider = ({ children }: Props) => {
           }
         }
         setCurrentIndex(currentIndex + 1);
+        setError(null);
         setLoading(false);
       } catch (error: any) {
         setError(error.message);
@@ -95,13 +91,6 @@ export const PostsContextProvider = ({ children }: Props) => {
     },
     [currentIndex, setPosts, history, user, cat]
   );
-
-  useEffect(() => {
-    if (posts.length) {
-      localStorage.setItem(LocalStorageVariables.LatestPost, JSON.stringify(posts[0]));
-      window.dispatchEvent(new Event("storage"));
-    }
-  }, [posts]);
 
   useEffect(() => {
     if (currentIndex >= 0) return;
@@ -113,6 +102,7 @@ export const PostsContextProvider = ({ children }: Props) => {
     setCatHistory([]);
     setHistory([]);
     setPosts([]);
+    setError(null);
   }, [cat]);
 
   const fetchMore = () => {
@@ -125,7 +115,6 @@ export const PostsContextProvider = ({ children }: Props) => {
   const fetchPrevious = () => {
     if (currentIndex > 0) {
       setPosts(history[currentIndex - 1].posts);
-
       setCurrentIndex(currentIndex - 1);
     }
   };

@@ -7,7 +7,6 @@ export const useCategories = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchCategories = useCallback(async () => {
-    if (categories.length || loading) return;
     setLoading(true);
     try {
       const data: { data: CategoryResponseProps[] } = await categoryAPI.CRUD.getCategories();
@@ -20,6 +19,7 @@ export const useCategories = () => {
   }, [categories.length, loading]);
 
   useEffect(() => {
+    if (categories.length || loading) return;
     fetchCategories();
   }, []);
 

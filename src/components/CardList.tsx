@@ -14,7 +14,7 @@ const CardList = () => {
         {loading ? (
           <Loader />
         ) : posts.length ? (
-          posts.map(post => <Card key={post.id} compKey={post.id} post={post} />)
+          posts.map((post, i) => <Card key={post.id} compKey={post.id} post={post} line={i < posts.length - 1} />)
         ) : error === "Sign in or sign up" ? (
           <h2 className="text-center text-xl">{error}</h2>
         ) : error === "You reached the fetch limit!" ? (

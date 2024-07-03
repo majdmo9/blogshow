@@ -8,6 +8,7 @@ import { handleSignIn, loginWithGoogle } from "@blogshow/lib/cognitoActions";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -15,7 +16,10 @@ const Login = () => {
 
   const login = async (values: InputProps) => {
     const data = objectToFormData(values);
-    await handleSignIn(data, router);
+    const res = await handleSignIn(data, router);
+    if (res === "Incorrect username or password.") {
+      toast.error(res);
+    }
     reset();
   };
 

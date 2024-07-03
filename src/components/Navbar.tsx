@@ -1,15 +1,11 @@
 import Link from "next/link";
 import AuthLinks from "./AuthLinks";
 import ThemeToggle from "./ThemeToggle";
-import SocialIcons from "./SocialIcons";
 
 const Navbar = () => {
   return (
     <nav className="flex justify-between items-center h-[100px]">
-      <div className="hidden lg:flex">
-        <SocialIcons />
-      </div>
-      <div className="flex-1 text-center logo">
+      <div className="flex-1 logo">
         <h1 className="text-3xl font-bold tracking-widest">BlogShow</h1>
       </div>
       <div className="flex justify-end items-center gap-4 flex-1 text-xl links">

@@ -13,9 +13,21 @@ interface Props {
   cancelBtn?: string;
   variant?: "success" | "warning" | "error" | "info";
   onConfirm: () => void;
+  onClose?: () => void;
 }
 
-const DialogComponent = ({ open, setOpen, title, description, content, confirmBtn, cancelBtn, variant = "info", onConfirm }: Props) => {
+const DialogComponent = ({
+  open,
+  setOpen,
+  title,
+  description,
+  content,
+  confirmBtn,
+  cancelBtn,
+  variant = "info",
+  onConfirm,
+  onClose = () => setOpen(false),
+}: Props) => {
   const getIconBgColor = () => {
     if (variant === "error") {
       return "bg-red-100 dark:bg-red-300";
@@ -125,7 +137,7 @@ const DialogComponent = ({ open, setOpen, title, description, content, confirmBt
                   <button
                     type="button"
                     className="dark:bg-[#29303f] transition-all dark:text-white mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset dark:ring-[#29303f] ring-gray-300 hover:dark:bg-[#1f273a] hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    onClick={() => onClose()}
                     data-autofocus
                   >
                     {cancelBtn ?? "Cancel"}

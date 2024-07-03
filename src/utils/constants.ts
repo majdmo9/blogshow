@@ -1,7 +1,5 @@
 export const LocalStorageVariables = {
   ThemeMode: "theme",
-  Page: "page",
-  LatestPost: "latest-post",
 };
 
 export const MaxReadLimit = 50;

@@ -68,12 +68,23 @@ const Comment = ({
       </div>
       <div className="flex justify-between items-center w-full gap-4">
         {editMode ? (
-          <input {...register("content")} placeholder="Comment.." className="w-full dark:bg-gray-600 rounded-sm dark:text-white px-4" />
+          <input
+            {...register("content")}
+            maxLength={520}
+            placeholder="Comment.."
+            className="w-full dark:bg-gray-600 rounded-sm dark:text-white px-4"
+          />
         ) : (
           <p className="text-lg font-light">{content}</p>
         )}
         {user?.email === author ? (
-          <EditDeleteControls onDelete={handleDelete} onEdit={handleEditMode} isDirty={isDirty} editMode={editMode} />
+          <EditDeleteControls
+            onDelete={handleDelete}
+            onEdit={handleEditMode}
+            isDirty={isDirty}
+            editMode={editMode}
+            deleteMessage="Are you sure you want to delete your comment"
+          />
         ) : (
           <></>
         )}

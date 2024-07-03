@@ -1,29 +1,24 @@
 "use client";
 import { PostPropsResponse } from "@blogshow/types/post";
-import { LocalStorageVariables } from "@blogshow/utils/constants";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import { useRouter } from "next/navigation";
 import useAuthUser from "@blogshow/hooks/useUser";
+import { usePosts } from "@blogshow/context/PostsContext";
 
 const Featured = () => {
   const router = useRouter();
   const user = useAuthUser();
 
+  const { posts, loading } = usePosts();
   const [post, setPost] = useState<PostPropsResponse>();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    window.addEventListener("storage", () => {
-      const res = localStorage.getItem(LocalStorageVariables.LatestPost);
-      if (res) {
-        setPost(JSON.parse(res));
-      }
-    });
-    setLoading(false);
-  }, []);
+    if (posts.length && !loading) {
+      setPost(posts[0] as PostPropsResponse);
+    }
+  }, [posts, loading]);
 
   if (loading && !post) {
     return <Loader />;

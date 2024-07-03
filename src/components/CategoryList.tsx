@@ -28,7 +28,7 @@ const CategoryList = ({ categories }: Props) => {
             ) : (
               <></>
             )}
-            <span>{item.id}</span>
+            <span>{item.id.length > 12 ? item.id.slice(0, 12) + "..." : item.id}</span>
           </Link>
         ))}
       </div>

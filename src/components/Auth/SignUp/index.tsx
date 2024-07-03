@@ -15,7 +15,9 @@ const SignUp = () => {
   const onRegister = async (values: InputProps) => {
     const data = objectToFormData(values);
     const res = await handleSignUp(data, router);
-    toast.success(res);
+    if (res === "User already exists") {
+      toast.error(res);
+    } else toast.success(res);
     reset();
   };
 

@@ -4,7 +4,7 @@ import { useCategories } from "@blogshow/hooks/useCategories";
 
 const DashboardPage = () => {
   const { categories } = useCategories();
-  <Dashboard categories={categories} />;
+  return <Dashboard categories={categories} />;
 };
 
 export default DashboardPage;

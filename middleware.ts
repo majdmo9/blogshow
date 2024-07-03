@@ -9,7 +9,6 @@ export async function middleware(request: NextRequest) {
 
   if (isOnDashboard) {
     if (!user) return NextResponse.redirect(new URL("/login", request.nextUrl));
-
     return response;
   }
 }

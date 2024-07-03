@@ -7,6 +7,7 @@ import DialogComponent from "../Dialog";
 import { toast } from "react-toastify";
 import { useCategories } from "@blogshow/hooks/useCategories";
 import { MaxCategoriesLimit } from "@blogshow/utils/constants";
+import { isValidImageUrl } from "@blogshow/utils/URL/isValidImage";
 
 interface Props {
   setSelectedCat: Dispatch<SetStateAction<CategoryResponseProps | undefined>>;
@@ -23,8 +24,16 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
     try {
       if (categories.length >= MaxCategoriesLimit) {
         toast.error("You have exceeded the limit for creating additional categories.");
+        return;
       }
-      if (!categoryTitle || !categoryImage) return;
+      if (!categoryTitle || !categoryImage) {
+        toast.error("Title and image are required to create a new category!");
+        return;
+      }
+      if (!isValidImageUrl(categoryImage)) {
+        toast.error("Image URL must reffer to an image only!");
+        return;
+      }
       const res = await categoryAPI.CRUD.createCategory({ id: categoryTitle, image: categoryImage });
       if (res) {
         toast.success(res.message);
@@ -41,7 +50,7 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
       <div className="flex gap-2 items-center w-full">
         <select
           onChange={e => setSelectedCat(categories.find(el => el.id === e.target.value) || categories[0])}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block min-w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
         >
           <option selected>*Choose a Category</option>
           {categories.map(cat => (
@@ -62,10 +71,22 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
         confirmBtn="Submit"
         content={
           <div className="flex flex-col gap-2 w-full mt-2 items-center">
-            <input type="text" onChange={e => setCategoryTitle(e.target.value.trim())} autoFocus className="input" placeholder="Title.." />
+            <input
+              type="text"
+              maxLength={20}
+              onChange={e => setCategoryTitle(e.target.value.trim())}
+              autoFocus
+              className="input"
+              placeholder="Title.."
+            />
             <input type="url" onChange={e => setCategoryImage(e.target.value.trim())} className="input" placeholder="Image URL.." />
           </div>
         }
+        onClose={() => {
+          setCategoryImage("");
+          setCategoryTitle("");
+          setOpen(false);
+        }}
       />
     </div>
   );

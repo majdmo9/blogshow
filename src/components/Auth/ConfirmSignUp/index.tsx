@@ -1,24 +1,31 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import { fetchAuthSession } from "aws-amplify/auth";
 import { useForm } from "react-hook-form";
-import { InputProps } from "./types";
-import { handleConfirmSignUp, handleSendEmailVerificationCode } from "@blogshow/lib/cognitoActions";
-import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { toast } from "react-toastify";
+import { handleAutoSignin, handleConfirmSignUp, handleSendEmailVerificationCode } from "@blogshow/lib/cognitoActions";
+import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
+import { kvAPI } from "@blogshow/Api/kv/api";
+import { InputProps } from "./types";
 
 const ConfirmSignUp = () => {
   const router = useRouter();
   const query = useSearchParams();
-  const email = query?.get("email");
 
+  const email = query?.get("email");
   const { register, handleSubmit, reset } = useForm<InputProps>();
 
   const onSubmit = async (values: InputProps) => {
     const data = objectToFormData({ email, code: values.confirmCode });
     const res = await handleConfirmSignUp(data);
     if (res.includes("successfuly")) {
-      toast.success(res);
-      router.push("/dashboard");
+      await handleAutoSignin();
+      const user = await fetchAuthSession();
+      if (user?.userSub) {
+        await kvAPI.CRUD.createUser(user.userSub);
+        toast.success(res);
+        router.push("/dashboard");
+      }
     } else {
       toast.error(res);
     }

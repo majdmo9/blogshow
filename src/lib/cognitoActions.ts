@@ -1,7 +1,7 @@
 "use client";
 import { getErrorMessage } from "@blogshow/utils/getErrorMessage";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect } from "aws-amplify/auth";
+import { signUp, confirmSignUp, signIn, signOut, resendSignUpCode, signInWithRedirect, autoSignIn } from "aws-amplify/auth";
 
 export const loginWithGoogle = async () => {
   window.open(
@@ -17,13 +17,14 @@ export async function handleSignUp(formData: FormData, router: AppRouterInstance
       username: String(formData.get("email")),
       password: String(formData.get("password")),
       options: {
-        userAttributes: {
-          email: String(formData.get("email")),
-        },
-        // optional
+        userAttributes: { email: String(formData.get("email")) },
         autoSignIn: true,
       },
     });
+
+    if (res.nextStep.signUpStep === "COMPLETE_AUTO_SIGN_IN") {
+      return "Sign up successful";
+    }
     if (res.isSignUpComplete) {
       return "Sign up successful";
     }
@@ -36,9 +37,7 @@ export async function handleSignUp(formData: FormData, router: AppRouterInstance
 export async function handleSendEmailVerificationCode(formData: FormData) {
   let message;
   try {
-    await resendSignUpCode({
-      username: String(formData.get("email")),
-    });
+    await resendSignUpCode({ username: String(formData.get("email")) });
     message = "Code sent successfully";
   } catch (error) {
     message = getErrorMessage(error);
@@ -49,11 +48,14 @@ export async function handleSendEmailVerificationCode(formData: FormData) {
 
 export async function handleConfirmSignUp(formData: FormData) {
   try {
-    await confirmSignUp({
+    const res = await confirmSignUp({
       username: String(formData.get("email")),
       confirmationCode: String(formData.get("code")),
     });
-    return "Registered successfuly, Now you can Signin..";
+    if (res.nextStep.signUpStep === "COMPLETE_AUTO_SIGN_IN") {
+      return "Registered successfuly, Now you can Signin..";
+    }
+    return "";
   } catch (error) {
     return getErrorMessage(error);
   }
@@ -79,11 +81,18 @@ export async function handleSignIn(formData: FormData, router: AppRouterInstance
   router.push(redirectLink);
 }
 
-export const handleSignOut = async (router: AppRouterInstance) => {
+export const handleAutoSignin = async () => {
+  try {
+    await autoSignIn();
+  } catch (error) {
+    return getErrorMessage(error);
+  }
+};
+
+export const handleSignOut = async () => {
   try {
     await signOut();
   } catch (error) {
     console.log(getErrorMessage(error));
   }
-  router.push("/login");
 };

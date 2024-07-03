@@ -9,18 +9,30 @@ import { usePathname, useRouter } from "next/navigation";
 import useAuthUser from "@blogshow/hooks/useUser";
 import Image from "next/image";
 import { UserIcon } from "@heroicons/react/24/outline";
+import DialogComponent from "./Dialog";
 
 const AuthLinks = () => {
   const user = useAuthUser();
   const status = user ? "authed" : "notauthed";
 
   const theme = useTheme();
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
   const toggleMenu = () => setOpen(prev => !prev);
   const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleProfileClick = () => {
+    setOpenLogoutDialog(true);
+  };
+
+  const handleLogout = async () => {
+    await handleSignOut();
+    setOpenLogoutDialog(false);
+    router.replace("/login");
+  };
 
   useEffect(() => {
     setOpen(false);
@@ -32,7 +44,7 @@ const AuthLinks = () => {
     <>
       <Link href="/dashboard/write">Write</Link>
       <Tooltip title="Logout">
-        <button className="pointer" onClick={() => handleSignOut(router)}>
+        <button className="pointer" onClick={handleProfileClick}>
           {!user?.picture ? (
             <UserIcon className="dark:text-gray-700 text-white rounded-[50%] p-2 bg-gray-700 dark:bg-[#f0f0f0] h-12 w-12" />
           ) : (
@@ -73,6 +85,14 @@ const AuthLinks = () => {
         {open ? <CloseRoundedIcon /> : <MenuRoundedIcon />}
       </div>
       {open ? Menu : !isDownMd ? Logout : <></>}
+      <DialogComponent
+        title="Sign out"
+        description="Are you sure you want to sign out?"
+        variant="warning"
+        onConfirm={handleLogout}
+        open={openLogoutDialog}
+        setOpen={setOpenLogoutDialog}
+      />
     </>
   );
 };

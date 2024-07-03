@@ -98,7 +98,13 @@ const SlugPage = () => {
   return (
     <div>
       {user?.userId === post.authorId ? (
-        <EditDeleteControls onDelete={handleDeletePost} onEdit={handleEditMode} isDirty={isDirty} editMode={editMode} />
+        <EditDeleteControls
+          onDelete={handleDeletePost}
+          onEdit={handleEditMode}
+          isDirty={isDirty}
+          editMode={editMode}
+          deleteMessage="Are you sure you want to delete the blog post?"
+        />
       ) : (
         <></>
       )}
