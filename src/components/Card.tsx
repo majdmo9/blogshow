@@ -10,7 +10,7 @@ interface Props {
 
 const Card = ({ post: { title, description, createdAt, category, imageUrl, id }, compKey }: Props) => {
   return (
-    <div className="mb-[50px] py-3 flex gap-[50px] items-center bg-gray-50 dark:bg-slate-800  rounded-sm" key={compKey}>
+    <div className="mb-[50px] lg:px-0 px-4 py-3 flex gap-[50px] items-center bg-gray-50 dark:bg-slate-800  rounded-sm" key={compKey}>
       <figure className="flex-1 relative h-[350px] lg:block hidden">
         <Image loader={() => imageUrl} src={imageUrl} fill alt="post-image" className="object-cover" />
       </figure>
