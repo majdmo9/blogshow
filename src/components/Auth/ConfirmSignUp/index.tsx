@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { fetchAuthSession } from "aws-amplify/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { handleAutoSignin, handleConfirmSignUp, handleSendEmailVerificationCode } from "@blogshow/lib/cognitoActions";
+import { handleAutoSignin, handleConfirmSignUp, handleSendEmailVerificationCode } from "../../../lib/cognitoActions";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { kvAPI } from "@blogshow/Api/kv/api";
 import { InputProps } from "./types";

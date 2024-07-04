@@ -1,4 +1,4 @@
-import Axios from "@blogshow/lib/axiosConfig";
+import Axios from "../../lib/axiosConfig";
 import { CommentResponseProps } from "@blogshow/types/comment";
 import { commentAPI } from "./api";
 import { convertKeysToCamelCase } from "@blogshow/utils/camelize";

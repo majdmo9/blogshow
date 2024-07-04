@@ -1,4 +1,4 @@
-import Axios from "@blogshow/lib/axiosConfig";
+import Axios from "../../lib/axiosConfig";
 import { kvAPI } from "./api";
 import { KVUser } from "@blogshow/types/kvUser";
 

@@ -1,7 +1,7 @@
 import { CategoryPostProps } from "@blogshow/types/post";
 import { postsAPI } from "./api";
 import { convertKeysToCamelCase } from "@blogshow/utils/camelize";
-import Axios from "@blogshow/lib/axiosConfig";
+import Axios from "../../lib/axiosConfig";
 import { isAxiosError } from "axios";
 
 export const getCategoryPosts = async (

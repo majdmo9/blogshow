@@ -1,4 +1,4 @@
-import Axios from "@blogshow/lib/axiosConfig";
+import Axios from "../../lib/axiosConfig";
 import { commentAPI } from "./api";
 import { CommentEditProps } from "@blogshow/types/comment";
 

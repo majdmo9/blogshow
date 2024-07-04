@@ -1,4 +1,4 @@
-import Axios from "@blogshow/lib/axiosConfig";
+import Axios from "../../lib/axiosConfig";
 import { postsAPI } from "./api";
 import { PostEditProps } from "@blogshow/types/post";
 

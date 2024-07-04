@@ -4,7 +4,7 @@ import { Divider } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleSignIn, loginWithGoogle } from "@blogshow/lib/cognitoActions";
+import { handleSignIn, loginWithGoogle } from "../../../lib/cognitoActions";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

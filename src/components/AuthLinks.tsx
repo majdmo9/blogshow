@@ -4,7 +4,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Link from "next/link";
 import { Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import { handleSignOut } from "@blogshow/lib/cognitoActions";
+import { handleSignOut } from "../lib/cognitoActions";
 import { usePathname, useRouter } from "next/navigation";
 import useAuthUser from "@blogshow/hooks/useUser";
 import Image from "next/image";

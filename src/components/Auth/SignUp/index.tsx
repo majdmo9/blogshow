@@ -4,7 +4,7 @@ import { Divider } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { InputProps } from "./types";
-import { handleSignUp, loginWithGoogle } from "@blogshow/lib/cognitoActions";
+import { handleSignUp, loginWithGoogle } from "../../../lib/cognitoActions";
 import { useRouter } from "next/navigation";
 import { objectToFormData } from "@blogshow/utils/convertObjToFormData";
 import { toast } from "react-toastify";

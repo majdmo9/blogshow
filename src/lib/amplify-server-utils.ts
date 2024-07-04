@@ -1,12 +1,10 @@
-import { authConfig } from "@blogshow/app/amplify-cognito-config";
+"use server";
 import { NextServer, createServerRunner } from "@aws-amplify/adapter-nextjs";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth/server";
-import { fetchUserAttributes } from "aws-amplify/auth";
+import { authConfig } from "./amplifyConfig";
 
 export const { runWithAmplifyServerContext } = createServerRunner({
-  config: {
-    Auth: authConfig,
-  },
+  config: { Auth: authConfig },
 });
 
 export async function authenticatedUser(context: NextServer.Context) {
