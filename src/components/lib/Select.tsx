@@ -46,11 +46,11 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex gap-2 items-center w-full">
+    <div className="min-w-full">
+      <div className="flex gap-2 items-center min-w-full">
         <select
           onChange={e => setSelectedCat(categories.find(el => el.id === e.target.value) || categories[0])}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block min-w-[calc(100%-65px)] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
         >
           <option selected>*Choose a Category</option>
           {categories.map(cat => (

@@ -94,7 +94,7 @@ const WritePage = () => {
                 </div>
               </Collapse>
             </div>
-            <div className="flex items-start  gap-[30px] h-[409px]">
+            <div className="flex items-start  gap-[30px] min-h-[409px]">
               <ReactQuill className="w-full mt-4" theme="bubble" value={text} onChange={setText} placeholder="Write your Post...*" />
             </div>
           </div>
