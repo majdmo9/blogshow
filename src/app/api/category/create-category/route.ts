@@ -13,8 +13,8 @@ export async function POST(req: NextRequest) {
       Item: { id, image, color },
     };
 
-    await docClient.send(new PutCommand(params));
     revalidateTag("category");
+    await docClient.send(new PutCommand(params));
     return NextResponse.json({ message: "Category created successfully" }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: "Error creating category", error }, { status: 500 });
