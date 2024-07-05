@@ -16,7 +16,7 @@ export const useCategories = () => {
       console.log({ err });
       setLoading(false);
     }
-  }, [categories.length, loading]);
+  }, []);
 
   useEffect(() => {
     if (categories.length || loading) return;

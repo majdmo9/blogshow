@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 import { useCategories } from "@blogshow/hooks/useCategories";
 import { MaxCategoriesLimit } from "@blogshow/utils/constants";
 import { isValidImageUrl } from "@blogshow/utils/URL/isValidImage";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { usePathname } from "next/navigation";
 
 interface Props {
   setSelectedCat: Dispatch<SetStateAction<CategoryResponseProps | undefined>>;
@@ -21,7 +19,6 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
   const [categoryImage, setCategoryImage] = useState("");
 
   const { categories, fetchCategories } = useCategories();
-  const pathname = usePathname();
 
   const handleCreateCategory = async () => {
     try {
