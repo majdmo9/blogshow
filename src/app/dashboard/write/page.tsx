@@ -65,8 +65,8 @@ const WritePage = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex xl:flex-row flex-col justify-between gap-2">
+    <div className="w-full">
+      <div className="flex xl:flex-row flex-col justify-between gap-2 w-full">
         <div className="xl:hidden block">
           <SelectComponent setSelectedCat={setCategory} />
         </div>
@@ -75,7 +75,7 @@ const WritePage = () => {
             onChange={e => setTitle(e.target.value)}
             type="text"
             placeholder="Title*"
-            className="mb-4 bg-transparent pl-0 pb-0 p-[50px] text-3xl md:text-4xl lg:text-5xl outline-none border-b-2 border-[#a6a6a6]"
+            className="mb-4 bg-transparent pl-0 pb-0 p-[50px] w-full text-3xl md:text-4xl lg:text-5xl outline-none border-b-2 border-[#a6a6a6]"
             maxLength={35}
           />
           <div>
@@ -83,7 +83,7 @@ const WritePage = () => {
               <button onClick={toggleOpen}>
                 <AddCircleOutlinedIcon className="text-[#626262] dark:text-[#25D366]" />
               </button>
-              <Collapse in={open} orientation="horizontal" className="absolute z-10 w-full dark:bg-[#0f172a] bg-white left-[50px]">
+              <Collapse in={open} orientation="horizontal" className="absolute z-10 dark:bg-[#0f172a] bg-white left-[50px]">
                 <div className="flex items-center gap-[10px]">
                   <button onClick={() => setOpenDialog(true)}>
                     <AddPhotoAlternateRoundedIcon className="text-[#626262] dark:text-[#25D366]" />
@@ -94,8 +94,8 @@ const WritePage = () => {
                 </div>
               </Collapse>
             </div>
-            <div className="flex items-start  gap-[30px] min-h-[409px]">
-              <ReactQuill className="w-full mt-4" theme="bubble" value={text} onChange={setText} placeholder="Write your Post...*" />
+            <div className="flex items-start min-h-[409px]">
+              <ReactQuill className="mt-4 w-full" theme="bubble" value={text} onChange={setText} placeholder="Write your Post...*" />
             </div>
           </div>
         </div>

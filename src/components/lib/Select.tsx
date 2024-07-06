@@ -35,13 +35,13 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
         return;
       }
       const res = await categoryAPI.CRUD.createCategory({ id: categoryTitle, image: categoryImage });
-
       if (res) {
         toast.success(res.message);
         await fetchCategories();
         setOpen(false);
       }
     } catch (err: any) {
+      console.log(err);
       toast.error(err.message);
     }
   };
@@ -51,9 +51,10 @@ const SelectComponent = ({ setSelectedCat }: Props) => {
       <div className="flex gap-2 items-center min-w-full">
         <select
           onChange={e => setSelectedCat(categories.find(el => el.id === e.target.value) || categories[0])}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block min-w-[calc(100%-65px)] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block min-w-[calc(100%-70px)] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ring-0 dark:text-white !outline-none !focus:outline-none"
+          defaultValue="none"
         >
-          <option selected>*Choose a Category</option>
+          <option value="none">*Choose a Category</option>
           {categories.map(cat => (
             <option key={cat.id} value={cat.id}>
               {cat.id}

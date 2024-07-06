@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import docClient from "@blogshow/db/dynamo";
 import { CategoryProps } from "@blogshow/types/category";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
-import { revalidateTag } from "next/cache";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,8 +11,6 @@ export async function POST(req: NextRequest) {
       TableName: "category",
       Item: { id, image, color },
     };
-
-    revalidateTag("category");
     await docClient.send(new PutCommand(params));
     return NextResponse.json({ message: "Category created successfully" }, { status: 201 });
   } catch (error) {

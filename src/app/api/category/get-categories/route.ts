@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { ScanCommand, ScanCommandInput } from "@aws-sdk/lib-dynamodb";
 import dynamoDB from "@blogshow/db/dynamo";
 
-export async function GET() {
+export async function PUT() {
   const params: ScanCommandInput = {
     TableName: "category",
   };
