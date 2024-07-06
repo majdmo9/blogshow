@@ -17,6 +17,7 @@ BlogShow is a modern blog platform built with a robust stack to provide a seamle
 
 - User authentication and authorization
 - Create, read, update, and delete (CRUD) operations for blog posts
+- Create, read limitations for each authenticated user
 - User profiles
 - Responsive design
 
@@ -25,7 +26,7 @@ BlogShow is a modern blog platform built with a robust stack to provide a seamle
 - **Frontend:** Nextjs, TailwindCSS
 - **Backend:** Nextjs api functions
 - **Authentication:** AWS Cognito, Amplify
-- **Database:** AWS DynamoDB
+- **Database:** AWS DynamoDB, Vercel KV
 - **Cloud Services:** AWS (DynamoDB, Cognito)
 
 ## Installation
@@ -51,12 +52,18 @@ BlogShow is a modern blog platform built with a robust stack to provide a seamle
 
 3. Create a `.env` file in the root directory and add the necessary environment variables:
    ```env
-    AMPLIFY_AMAZON_CLIENT_SECRET=your_amplify_amazon_client_secret
-    AMPLIFY_AMAZON_CLIENT_ID=your_amplify_amazon_client_id
-    AMPLIFY_AMAZON_REGION=your_amplify_amazon_region
-    NEXT_PUBLIC_USER_POOL_ID=your_user_pool_id
-    NEXT_PUBLIC_USER_POOL_CLIENT_ID=your_user_pool_client_id
-    NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+   AMPLIFY_AMAZON_CLIENT_ID=
+   AMPLIFY_AMAZON_CLIENT_SECRET=
+   AMPLIFY_AMAZON_REGION=
+   GOOGLE_OAUTH_CLIENT_ID=
+   KV_REST_API_READ_ONLY_TOKEN=
+   KV_REST_API_TOKEN=
+   KV_REST_API_URL=
+   KV_URL=
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+   NEXT_PUBLIC_USER_POOL_CLIENT_ID=
+   NEXT_PUBLIC_USER_POOL_ID=
+   OWNER_USER_ID=
    ```
 
 ## Usage
