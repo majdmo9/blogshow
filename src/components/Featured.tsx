@@ -6,6 +6,7 @@ import Loader from "./Loader";
 import { useRouter } from "next/navigation";
 import useAuthUser from "@blogshow/hooks/useUser";
 import { usePosts } from "@blogshow/context/PostsContext";
+import Link from "next/link";
 
 const Featured = () => {
   const router = useRouter();
@@ -29,7 +30,14 @@ const Featured = () => {
       <div className="mt-[30px]">
         <h1 className="text-2xl md:text-3xl lg:text-4xl  font-light">
           <span className="font-bold">Welcome👋! </span>
-          Sign in or sign up to start blogging.
+          <Link href="/login" className="underline">
+            Sign in
+          </Link>{" "}
+          or{" "}
+          <Link href="signup" className="underline">
+            sign up
+          </Link>{" "}
+          to start blogging.
         </h1>
       </div>
     );

@@ -3,6 +3,7 @@ import Card from "./Card";
 import Pagination from "./Pagination";
 import Loader from "./Loader";
 import { usePosts } from "@blogshow/context/PostsContext";
+import Link from "next/link";
 
 const CardList = () => {
   const { posts, loading, hasMore, hasPrevious, fetchMore, fetchPrevious, error } = usePosts();
@@ -16,7 +17,15 @@ const CardList = () => {
         ) : posts.length ? (
           posts.map((post, i) => <Card key={post.id} compKey={post.id} post={post} line={i < posts.length - 1} />)
         ) : error === "Sign in or sign up" ? (
-          <h2 className="text-center text-xl">{error}</h2>
+          <h2 className="text-center text-xl">
+            <Link href="/login" className="underline">
+              Sign in
+            </Link>{" "}
+            or{" "}
+            <Link href="signup" className="underline">
+              sign up
+            </Link>{" "}
+          </h2>
         ) : error === "You reached the fetch limit!" ? (
           <h2 className="text-center text-xl">{error}</h2>
         ) : (
