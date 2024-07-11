@@ -89,7 +89,7 @@ export const PostsContextProvider = ({ children }: Props) => {
         setLoading(false);
       }
     },
-    [currentIndex, setPosts, history, user, cat]
+    [currentIndex, setPosts, history, user, cat, catHistory]
   );
 
   useEffect(() => {

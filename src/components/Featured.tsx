@@ -14,6 +14,7 @@ const Featured = () => {
 
   const { posts, loading } = usePosts();
   const [post, setPost] = useState<PostPropsResponse>();
+  console.log({ post, posts, loading });
 
   useEffect(() => {
     if (posts.length && !loading) {
@@ -22,7 +23,11 @@ const Featured = () => {
   }, [posts, loading]);
 
   if (loading && !post) {
-    return <Loader />;
+    return (
+      <div className="w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   if (!user?.userId) {

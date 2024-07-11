@@ -49,7 +49,15 @@ const AuthLinks = () => {
             <UserIcon className="dark:text-gray-700 text-white rounded-[50%] p-2 bg-gray-700 dark:bg-[#f0f0f0] h-12 w-12" />
           ) : (
             <figure>
-              <Image loader={() => user?.picture} src={user?.picture} width={50} height={50} alt="user-profile-img" className="rounded-[50%]" />
+              <Image
+                loader={() => user.picture}
+                loading="lazy"
+                src={user.picture}
+                width={50}
+                height={50}
+                alt="user-profile-img"
+                className="rounded-[50%]"
+              />
             </figure>
           )}
         </button>
