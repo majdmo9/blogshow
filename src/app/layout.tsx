@@ -16,6 +16,16 @@ const inter = Inter({ subsets: ["latin"], weight: ["100", "200", "300", "400", "
 export const metadata: Metadata = {
   title: "Blog Show",
   description: "A full stack blog app integrated with AWS",
+  openGraph: {
+    images: [
+      {
+        url: "<generated>",
+        type: "<generated>",
+        width: "<generated>",
+        height: "<generated>",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
