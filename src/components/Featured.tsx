@@ -56,7 +56,7 @@ const Featured = () => {
         </figure>
         <div className="flex-1 flex flex-col gap-[20px]">
           <h1 className="text-4xl font-semibold">{post.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: post.description }} />
+          <div dangerouslySetInnerHTML={{ __html: post.description.slice(0, 300) + "..." }} />
           <button onClick={() => router.push(`/dashboard/${post.id}`)} className="px-4 py-3 rounded-md bg-[#ddd] dark:text-black w-fit outline-none">
             Read More
           </button>
