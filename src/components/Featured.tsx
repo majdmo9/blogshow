@@ -60,11 +60,11 @@ const Featured = () => {
 
   return (
     <div className="mt-[30px]">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl xl:6xl  font-light">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl xl:6xl font-light">
         <span className="font-bold">Unveiling the Power of Mindfulness:</span> A Journey to Inner Peace and Productivity
       </h1>
       <div className="xl:mt-[60px] lg:mt-[50px] md:mt-[40px] mt-[30px] flex items-center gap-[50px]">
-        <figure className="flex-1 h-500 relative">
+        <figure className="flex-1 h-500 relative rounded-sm overflow-hidden">
           <Image loader={() => post.imageUrl} src={post.imageUrl} alt="post-image" fill className="object-cover w-full h-full" />
         </figure>
         <div className="flex-1 flex flex-col gap-[20px]">

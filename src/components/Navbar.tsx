@@ -6,7 +6,9 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center h-[100px]">
       <div className="flex-1 logo">
-        <h1 className="text-3xl font-bold tracking-widest">BlogShow</h1>
+        <Link href="/">
+          <h1 className="text-3xl font-bold tracking-widest">BlogShow</h1>
+        </Link>
       </div>
       <div className="flex justify-end items-center gap-4 flex-1 text-xl links">
         <ThemeToggle />

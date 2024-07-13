@@ -41,7 +41,7 @@ const ContactUsPage = () => {
       />
       <button
         onClick={handleSend}
-        className="bg-[#25D366] py-2 px-10 rounded-sm text-black dark:text-white font-semibold tracking-wider w-fit ml-auto"
+        className="bg-orange-600 hover:bg-orange-500 transition-all py-2 px-10 rounded-sm text-white font-semibold tracking-wider w-fit ml-auto"
       >
         Send
       </button>

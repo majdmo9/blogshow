@@ -80,7 +80,7 @@ const AboutPage = () => {
       )}
       <button
         onClick={() => setShowMore(prev => !prev)}
-        className="bg-[#25D366] py-2 px-4 mt-4 rounded-sm text-black dark:text-white font-semibold tracking-wider"
+        className="bg-orange-600 hover:bg-orange-500 transition-all py-2 px-4 mt-4 rounded-sm text-white font-semibold tracking-wider"
       >
         {showMore ? "Show Less" : "Show More"}
       </button>

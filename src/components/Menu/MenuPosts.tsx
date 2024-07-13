@@ -20,7 +20,7 @@ const MenuPosts = ({ hasImage = false, categories }: Props) => {
   return (
     <div className="flex flex-col gap-[35px] mt-[35px] mb-[60px]">
       {posts.map(post => (
-        <Link key={post.id} href="/" className="flex items-center gap-[20px]">
+        <Link key={post.id} href={`/dashboard/${post.id}`} className="flex items-center gap-[20px]">
           {hasImage ? (
             <figure className="flex-1 relative aspect-square">
               <Image

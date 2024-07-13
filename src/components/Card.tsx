@@ -10,11 +10,11 @@ interface Props {
 
 const Card = ({ post: { title, description, createdAt, category, imageUrl, id }, compKey }: Props) => {
   return (
-    <div className="mb-[50px] lg:px-0 px-4 py-3 flex gap-[50px] items-center bg-gray-50 dark:bg-slate-800  rounded-sm" key={compKey}>
-      <figure className="flex-1 relative h-[350px] lg:block hidden">
-        <Image loader={() => imageUrl} src={imageUrl} fill alt="post-image" className="object-cover" />
+    <div className="mb-[50px] lg:px-0 flex gap-[50px] items-center bg-gray-50 dark:bg-slate-800  rounded-s shadow-lg overflow-hidden" key={compKey}>
+      <figure className="w-full lg:block hidden">
+        <Image loader={() => imageUrl} src={imageUrl} width={800} height={800} alt="post-image" className="object-cover !min-h-[455px]" />
       </figure>
-      <div className="flex-1 flex flex-col gap-[30px]">
+      <div className="w-full py-3 px-4 flex flex-col gap-[30px]">
         <div>
           <span className="text-gray-400">{new Date(createdAt).toLocaleString()} - </span>
           <span className="font-medium text-[#aa0022]">{category}</span>
@@ -23,7 +23,7 @@ const Card = ({ post: { title, description, createdAt, category, imageUrl, id },
           <h1 className="text-3xl font-semibold">{title}</h1>
         </Link>
         <div
-          className="text-[#626262] dark:text-[#a6a6a6] leading-10"
+          className="text-[#626262] dark:text-[#a6a6a6] leading-6"
           dangerouslySetInnerHTML={{ __html: (description?.length ?? 0) > 300 ? description.slice(0, 300) + "..." : description }}
         />
         <Link href={`/dashboard/${id}`} className="border-b-[1px] border-[#aa0022] w-fit py-[2px]">
