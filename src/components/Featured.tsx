@@ -14,7 +14,6 @@ const Featured = () => {
 
   const { posts, loading } = usePosts();
   const [post, setPost] = useState<PostPropsResponse>();
-  console.log({ post, posts, loading });
 
   useEffect(() => {
     if (posts.length && !loading) {

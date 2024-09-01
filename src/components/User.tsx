@@ -25,7 +25,7 @@ const User = ({ author, authorImage, createdAt }: Props) => {
         )}
       </figure>
       <div className="flex flex-col gap-[5px] text-[#626262] dark:text-[#a6a6a6]">
-        <span className="text-lg md:text-xl font-medium">{author}</span>
+        <span className="text-lg md:text-xl font-medium">{author.split("@")[0]}</span>
         <span className="text-sm">{new Date(createdAt).toLocaleString()}</span>
       </div>
     </div>
