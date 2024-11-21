@@ -3,9 +3,10 @@ import { getCurrentUser } from "aws-amplify/auth/server";
 
 import { runWithAmplifyServerContext } from "@blogshow/lib/amplify-server-utils";
 import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 
 export async function DELETE(req: Request) {
+  const redis = Redis.fromEnv();
   if (req.method !== "DELETE") {
     return NextResponse.json({ message: "Method not allowed" }, { status: 405 });
   }
@@ -22,7 +23,7 @@ export async function DELETE(req: Request) {
     if (typeof deleteUserId !== "string") {
       return NextResponse.json({ message: "userId must be type of string" }, { status: 415 });
     }
-    await kv.del(deleteUserId);
+    await redis.del(deleteUserId);
     return NextResponse.json({ message: "UDS" }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: err }, { status: 400 });
